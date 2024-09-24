@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="Lab1.css"/>
+    <link rel="stylesheet" href="styles.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
   </head>
   <body>
     <div class="Top-menu">
@@ -12,26 +13,28 @@
             <div class="logo-box">
                 <img class="logo" src="Photo/logo.png">
             </div>
-            <div class="button-box">
-                <nav>
-                    <ul>
-                        <li><a href="">ABOUT</a></li>
-                        <li><a href="">HOW TO</a></li>
-                        <li><a href="">FAQS</a></li>
-                        <li class="btn"><a href="">CONTACT US</a></li>
-                    </ul>
-                </nav>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">HOW TO</a></li>
+                    <li><a href="#">FAQS</a></li>
+                    <li class="btn"><a href="#">CONTACT US</a></li>
+                </ul>
+            </nav>
         </div>
         <div class="Top-photo">
             <div class="inphoto-box">Your awesome traffic permit consultant.
                 <div>
-                    <a class="inphoto-btn">get started</a>
+                    <a class="inphoto-btn">get started<img class="inphoto-arrow" src="/Photo/arrow.png"></a>
                 </div>  
-            </div>
-            
+            </div> 
         </div>
-        <img class="Bot-photo" src="Photo/Car-image.png">
+        <img class="Bot-photo" src="/Photo/Car-image.png">
     </div>
     <div class="First-menu">
         <div class="about-us">ABOUT US
@@ -42,10 +45,14 @@
                 a commercial traffic permit for freight transport to your business?
             </div>
         </div>
-        <div class="photo-guy"><img src="Photo/Guy.png"></div>
+        <div class="photo-guy">
+            <img src="/Photo/Guy.png">
+        </div>
     </div>
     <div class="Second-menu">
-        <div class="photo-girl"><img src="Photo/Girl.png"></div>
+        <div class="photo-girl">
+            <img src="/Photo/Girl.png">
+        </div>
         <div class="How-to-apply">How to apply
             <div class="How-to-apply-txt">When applying for a traffic permit, there are certain requirements that you must meet that are included in the examination: requirements for professional knowledge, solid establishment, good reputation and financial resources. Important to remember is to confirm your application for a traffic permit by the company's company signer or CEO.
             </div>
@@ -70,16 +77,21 @@
                     <img class="Client-img" src="Photo/Isaac2.png"><p class="Client-name">Isak Pettersson</p>
                 </div>
             </div>
-        </div>
+        </div>          
     </div>
     <footer>
-        <img src="Photo/Copyright @ 2019.png">
-        <img src="Photo/logo.png">
+        <div class="social">
+            <img class="Copyright-img" src="Photo/Copyright @ 2019.png">
+        </div>
+        <div class="social">
+            <img class="logo-img" src="Photo/logo.png">
+        </div>
         <div class="social">
             <a href="https://www.facebook.com/?locale=uk_UA"><img class="social-img" src="Photo/f.png"></a>
             <a href="https://x.com/?lang=uk"><img class="social-img" src="Photo/i.png"></a>
             <a href="https://www.instagram.com/nezeracuk?igsh=MWFpM29ndmhqbDUxaw%3D%3D&utm_source=qr"><img class="social-img" src="Photo/t.png"></a>
         </div>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>
