@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Magazine</title>
+    <link rel="stylesheet" href="/Lab5/style.css">
+</head>
+<body>
+    <h1>Grocery Magazine</h1>
+
+    <div class="menu">
+        <div>     
+            <input type="text" id="searchInput" placeholder="Search for groceries..." onkeyup="searchGroceries()">
+
+            <select id="sortOptions" onchange="sortGroceries()">
+                <option value="Default">Sort By</option>
+                <option value="Low_to_high">Price: Low to High</option>
+                <option value="High_to_low">Price: High to Low</option>
+                <option value="A_to_Z">Name: A to Z</option>
+                <option value="Z_to_A">Name: Z to A</option>
+            </select>
+        </div>
+
+        <div class="added">
+
+            <input type="text" class="addItem" id="addName" placeholder="Name a product">
+
+            <input type="number" class="addItem" id="addPrice" min="0" placeholder="Give a price">
+
+            <input type="text" class="addItem" id="addCategory" placeholder="Name a category">
+
+            <button id="item-btn" onclick="addNewItems()">Add item</button>
+
+        </div>
+    </div>
+
+    <p id="itemCount"></p>
+
+    <div id="groceryList"></div>
+
+    <div>
+        <input type="number" id="editId" min="1" placeholder="Type id that u want to change">
+
+        <input type="text" class="editItem" id="editName" placeholder="Name a product">
+
+        <input type="number" class="editItem" id="editPrice" min="0" placeholder="Give a price">
+
+        <input type="text" class="editItem" id="editCategory" placeholder="Name a category">
+
+        <button id="edit-btn" class="edit-btn" onclick="edit_item()">edit</button>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
