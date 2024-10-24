@@ -1,5 +1,5 @@
 import express from 'express';
-import groceryRoutes from './routes/groceries.js';  // Переконайтеся, що шлях правильний
+import groceryRoutes from './routes/groceries.js';
 
 const app = express();
 

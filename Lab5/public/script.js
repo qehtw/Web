@@ -6,7 +6,6 @@ async function fetchGroceries() {
 
 fetchGroceries();
 
-// Відображення елементів
 function showitems(items) {
     const groceryList = document.getElementById("groceryList");
     const itemCount = document.getElementById("itemCount");
@@ -20,13 +19,33 @@ function showitems(items) {
             <span><strong>$${item.price}</strong></span>
             <span>${item.category}</span>
             <span>ID: ${item.id}</span>
+            <button onclick="deleteItem(${item.id})">Delete</button>
         </div>`;
     }, "");
 
     groceryList.innerHTML = innerHtml;
 }
 
-// Пошук продуктів
+async function deleteItem(id) {
+    try {
+        const response = await fetch(`/api/groceries/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            fetchGroceries();  // Оновити список після видалення
+        } else {
+            const errorData = await response.json();
+            console.error("Server error:", errorData);
+            alert("Error deleting item: " + errorData.message);
+        }
+    } catch (error) {
+        console.error("Network error:", error);
+        alert("Error deleting item: " + error.message);
+    }
+}
+
+
 function searchGroceries() {
     const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
     fetch('/api/groceries')
@@ -87,7 +106,6 @@ async function addNewItem() {
 
 document.getElementById("item-btn").onclick = addNewItem;
 
-// Редагування продукту
 async function editItem() {
     const editId = document.getElementById("editId").value.trim();
     const editName = document.getElementById("editName").value.trim();
@@ -96,18 +114,26 @@ async function editItem() {
 
     const updatedItem = { name: editName, price: editPrice, category: editCategory };
 
-    const response = await fetch(`/api/groceries/${editId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedItem)
-    });
+    try {
+        const response = await fetch(`/api/groceries/${editId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedItem)
+        });
 
-    if (response.ok) {
-        fetchGroceries();
-    } else {
-        alert("Product not found or invalid data");
+        if (response.ok) {
+            // If update is successful, reload the groceries
+            fetchGroceries(); 
+        } else {
+            // Handle errors returned from the backend
+            const errorData = await response.json();
+            alert("Error: " + errorData.message);  // Display the error message, e.g., "Product name already exists"
+        }
+    } catch (error) {
+        console.error("Network error:", error);
+        alert("Error updating item: " + error.message);
     }
 }
 

@@ -25,14 +25,45 @@ export const addGrocery = (req, res) => {
 };
 
 export const editGrocery = (req, res) => {
-    const { id } = req.params;
-    const { name, price, category } = req.body;
-    
+    const { id } = req.params;  // Get the ID from the request
+    const { name, price, category } = req.body;  // Get the new values from the request body
+
+    // Find the product being edited by its ID
     const itemIndex = groceries.findIndex(item => item.id == id);
+
     if (itemIndex === -1) {
+        // If the product is not found, return a 404 status
         return res.status(404).json({ message: "Product not found" });
     }
 
+    // Check if another product with the same name exists, except the current one
+    const existingItemWithSameName = groceries.find(item => item.name === name && item.id != id);
+    
+    if (existingItemWithSameName) {
+        // If a product with the same name is found, return a 400 status
+        return res.status(400).json({ message: "Product name already exists" });
+    }
+
+    // Update the product
     groceries[itemIndex] = { id: Number(id), name, price, category };
+
+    // Return the updated product
     res.json(groceries[itemIndex]);
+};
+
+
+export const deleteGrocery = (req, res) => {
+    console.log("Delete request received for ID:", req.params.id);
+
+    const { id } = req.params;
+    const itemIndex = groceries.findIndex(item => item.id == id);
+    
+    if (itemIndex === -1) {
+        console.log("Product not found");
+        return res.status(404).json({ message: "Product not found" });
+    }
+
+    groceries.splice(itemIndex, 1);
+    console.log("Product deleted successfully");
+    res.status(200).json({ message: "Product deleted successfully" });
 };
