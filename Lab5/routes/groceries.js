@@ -3,7 +3,6 @@ import { getAllGroceries, addGrocery, editGrocery, deleteGrocery } from '../cont
 
 const router = express.Router();
 
-// Інші маршрути...
 router.get('/', getAllGroceries);
 router.post('/', addGrocery);
 router.put('/:id', editGrocery);

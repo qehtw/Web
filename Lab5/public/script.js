@@ -33,7 +33,7 @@ async function deleteItem(id) {
         });
 
         if (response.ok) {
-            fetchGroceries();  // Оновити список після видалення
+            fetchGroceries();
         } else {
             const errorData = await response.json();
             console.error("Server error:", errorData);
@@ -45,43 +45,30 @@ async function deleteItem(id) {
     }
 }
 
-
-function searchGroceries() {
-    const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
-    fetch('/api/groceries')
-        .then(response => response.json())
-        .then(data => {
-            const filteredItems = data.filter(item =>
-                item.name.toLowerCase().includes(searchTerm) || 
-                item.category.toLowerCase().includes(searchTerm)
-            );
-            showitems(filteredItems);
-        });
-}
-
-// Сортування продуктів
-function sortGroceries() {
+function searchAndSortGroceries() {
+    const searchTerm = document.getElementById("searchInput").value.trim();
     const sortOption = document.getElementById("sortOptions").value;
-    fetch('/api/groceries')
-        .then(response => response.json())
-        .then(data => {
-            let sortedItems = [...data];
 
-            if (sortOption === "Low_to_high") {
-                sortedItems.sort((a, b) => a.price - b.price);
-            } else if (sortOption === "High_to_low") {
-                sortedItems.sort((a, b) => b.price - a.price);
-            } else if (sortOption === "A_to_Z") {
-                sortedItems.sort((a, b) => a.name.localeCompare(b.name));
-            } else if (sortOption === "Z_to_A") {
-                sortedItems.sort((a, b) => b.name.localeCompare(a.name));
+    const query = new URLSearchParams({ search: searchTerm, sort: sortOption }).toString();
+    fetch(`/api/groceries?${query}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-
-            showitems(sortedItems);
+            return response.json();
+        })
+        .then(data => {
+            showitems(data);
+        })
+        .catch(error => {
+            console.error('Error during search and sort:', error);
         });
 }
 
-// Додавання нового продукту
+document.getElementById("sortOptions").addEventListener("change", searchAndSortGroceries);
+
+document.getElementById("searchInput").addEventListener("input", searchAndSortGroceries);
+
 async function addNewItem() {
     const newName = document.getElementById("addName").value.trim();
     const newPrice = document.getElementById("addPrice").value;
@@ -124,12 +111,10 @@ async function editItem() {
         });
 
         if (response.ok) {
-            // If update is successful, reload the groceries
             fetchGroceries(); 
         } else {
-            // Handle errors returned from the backend
             const errorData = await response.json();
-            alert("Error: " + errorData.message);  // Display the error message, e.g., "Product name already exists"
+            alert("Error: " + errorData.message);
         }
     } catch (error) {
         console.error("Network error:", error);

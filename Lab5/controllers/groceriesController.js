@@ -8,12 +8,37 @@ let groceries = [
 ];
 
 export const getAllGroceries = (req, res) => {
-    res.json(groceries);
+    let { search, sort } = req.query;
+    
+    let filteredGroceries = [...groceries];
+
+    if (search) {
+        search = search.toLowerCase();
+        filteredGroceries = filteredGroceries.filter(item =>
+            item.name.toLowerCase().includes(search) ||
+            item.category.toLowerCase().includes(search)
+        );
+    }
+
+    if (sort === "Low_to_high") {
+        filteredGroceries.sort((a, b) => a.price - b.price);
+    } else if (sort === "High_to_low") {
+        filteredGroceries.sort((a, b) => b.price - a.price);
+    } else if (sort === "A_to_Z") {
+        filteredGroceries.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sort === "Z_to_A") {
+        filteredGroceries.sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    res.json(filteredGroceries);
 };
 
 export const addGrocery = (req, res) => {
     const { name, price, category } = req.body;
-    const newItem = { id: groceries.length + 1, name, price, category };
+
+    const maxId = groceries.length > 0 ? Math.max(...groceries.map(item => item.id)) : 0;
+
+    const newItem = { id: maxId + 1, name, price, category };
     
     const existingItem = groceries.find(item => item.name === name);
     if (existingItem) {
@@ -25,32 +50,25 @@ export const addGrocery = (req, res) => {
 };
 
 export const editGrocery = (req, res) => {
-    const { id } = req.params;  // Get the ID from the request
-    const { name, price, category } = req.body;  // Get the new values from the request body
+    const { id } = req.params;
+    const { name, price, category } = req.body;
 
-    // Find the product being edited by its ID
     const itemIndex = groceries.findIndex(item => item.id == id);
 
     if (itemIndex === -1) {
-        // If the product is not found, return a 404 status
         return res.status(404).json({ message: "Product not found" });
     }
 
-    // Check if another product with the same name exists, except the current one
     const existingItemWithSameName = groceries.find(item => item.name === name && item.id != id);
     
     if (existingItemWithSameName) {
-        // If a product with the same name is found, return a 400 status
         return res.status(400).json({ message: "Product name already exists" });
     }
 
-    // Update the product
     groceries[itemIndex] = { id: Number(id), name, price, category };
 
-    // Return the updated product
     res.json(groceries[itemIndex]);
 };
-
 
 export const deleteGrocery = (req, res) => {
     console.log("Delete request received for ID:", req.params.id);

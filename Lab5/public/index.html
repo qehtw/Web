@@ -11,7 +11,7 @@
 
     <div class="menu">
         <div>     
-            <input type="text" id="searchInput" placeholder="Search for groceries..." onkeyup="searchGroceries()">
+            <input type="text" id="searchInput" placeholder="Search for groceries..." onkeyup="searchAndSortGroceries()">
 
             <select id="sortOptions" onchange="sortGroceries()">
                 <option value="Default">Sort By</option>
@@ -20,6 +20,7 @@
                 <option value="A_to_Z">Name: A to Z</option>
                 <option value="Z_to_A">Name: Z to A</option>
             </select>
+            <button id="search-btn">Search & Sort</button>
         </div>
 
         <div class="added">
