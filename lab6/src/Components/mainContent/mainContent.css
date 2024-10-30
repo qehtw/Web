@@ -1,0 +1,54 @@
+.new-arrivals {
+    padding: 90px;
+    text-align: center;
+}
+
+.new-arrivals-title {
+    font-size: 2.5rem;
+    text-decoration: underline;
+    margin-bottom: 30px;
+}
+
+.grocery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.grocery-block {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 580px;
+    transition: transform 0.3s;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+.grocery-block:hover {
+    transform: scale(1.03);
+}
+
+.grocery-image {
+    width: 150px ;
+    height: auto;
+    border-bottom: 2px solid #ddd;
+}
+
+.grocery-name {
+    padding: 5px;
+    font-size: 1.2rem;
+    color: rgb(166, 131, 34);
+}
+
+.grocery-price {
+    padding: 5px;
+    font-size: 1rem;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+h2 {
+    color: rgb(166, 131, 34);
+}
