@@ -16,6 +16,7 @@ const groceries = () => {
             <h2 className="new-arrivals-title">Best sellers</h2>
             <div className="grocery-grid">
                 {groceries.map(grocery => (
+                    /*Винести в компонент */
                     <div key={grocery.id} className="grocery-block">
                         <img src={grocery.image} alt={grocery.name} className="grocery-image" />
                         <p className="grocery-name">{grocery.name}</p>
