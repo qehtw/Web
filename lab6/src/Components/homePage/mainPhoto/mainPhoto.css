@@ -8,7 +8,7 @@
     background-color: #f4f4f4;
     height: auto;
     min-height: 80vh;
-    background-image: url('../../images/Veres.jpg'); 
+    background-image: url('../../../images/Veres.jpg'); 
     background-size: 750px; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -57,3 +57,4 @@
     height: auto;
     border-radius: 10px;
 }
+

@@ -1,4 +1,4 @@
-import '../../images/Veres.jpg'
+import '../../../images/Veres.jpg'
 import './mainPhoto.css'
 
 function MainPhoto(){

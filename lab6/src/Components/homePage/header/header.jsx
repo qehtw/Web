@@ -1,10 +1,10 @@
 import './header.css';
-import '../../images/Veres.jpg'
+import '../../../images/Veres.jpg'
 
 function Header(){
     return(
         <header className="header">
-        <img src={require('../../images/Veres.jpg')} alt="Company Logo" className="logo" />
+        <img src={require('../../../images/Veres.jpg')} alt="Company Logo" className="logo" />
          <nav>
              <ul>
                  <li><a href="/">Home</a></li>
