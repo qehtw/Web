@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { allGrocieries } from '../../../allGrocieries/allGrocieries';
-import '../ItemPage/ItemPage.css';
+import './ItemPage.css';
 
 const ItemPage = () => {
   const { id } = useParams();

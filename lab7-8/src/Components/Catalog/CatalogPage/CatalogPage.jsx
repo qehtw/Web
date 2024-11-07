@@ -4,7 +4,7 @@ import CatalogItem from '../CatalogItems/CatalogItems';
 import InputComponent from '../inputcomponent/inputcomponent';
 import SelectComponent from '../selectComponent/selectComponent';
 import SortButton from '../sortbutton/sortbutton';
-import '../CatalogPage/CatalogPage.css';
+import './CatalogPage.css';
 
 const сatalog = () => {
   const { items } = useContext(allGrocieries);

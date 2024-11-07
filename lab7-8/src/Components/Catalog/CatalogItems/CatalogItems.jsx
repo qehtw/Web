@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../CatalogItems/CatalogItems.css'
+import './CatalogItems.css'
 
 const CatalogItem = ({ id, name, price, description, image }) => {
   return (
