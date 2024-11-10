@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext , useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { allGrocieries } from '../../../allGrocieries/allGrocieries';
 import './ItemPage.css';
@@ -29,3 +29,8 @@ const ItemPage = () => {
 };
 
 export default ItemPage;
+
+
+
+
+
