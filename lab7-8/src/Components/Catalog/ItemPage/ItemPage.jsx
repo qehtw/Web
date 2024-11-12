@@ -38,8 +38,8 @@ const ItemPage = () => {
   return (
     <div className="item-page">
       <div className="item-image-container">
-        <img src={item.image} alt={item.name} className="item-image" />
         <p className="price">Price: ${totalPrice}</p>
+        <img src={`/images/${item.image}`} alt={item.name} className="catalog-item-image" />
       </div>
       <div className="item-details">
         <h1>{item.name}</h1>

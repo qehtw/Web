@@ -35,15 +35,13 @@ const GrocieryItems = () => {
     return (
         <section className="new-arrivals">
             <h2 className="new-arrivals-title">Топ місяця</h2>
-            <div className="grocery-grid">
-                {/* Перебираємо товари і відображаємо кожен за допомогою CatalogItem */}
-                {items.slice(0, visibleItems).map((item) => ( 
+            <div className="grocery-grid">                {items.slice(0, visibleItems).map((item) => ( 
                     <CatalogItem
                         key={item.id}
                         id={item.id}
                         name={item.name}
                         price={item.price}
-                        image={item.image}  // Передаємо картинку як пропс
+                        image={item.image} 
                     />
                 ))}
             </div>
