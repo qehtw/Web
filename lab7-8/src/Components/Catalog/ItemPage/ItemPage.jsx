@@ -31,6 +31,7 @@ const ItemPage = () => {
 
   const handleQuantityChange = (e) => {
     setQuantity(e.target.value);
+    if(e.target.value < 0 ) setQuantity('')
   };
   const totalPrice = (item.price * quantity).toFixed(2);
 
