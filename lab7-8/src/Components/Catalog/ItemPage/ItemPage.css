@@ -63,12 +63,6 @@
     font-size: 0.9rem;
   }
   
-  .countable-field,
-  .selectable-field {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-  }
   
   .countable-field input,
   .selectable-field select {
