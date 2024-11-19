@@ -11,7 +11,6 @@ export const fetchItems = async (searchTerm = '', sortOrder = 'desc', category =
   return response;
 };
 
-// Функція для отримання товару за його ID
 export const fetchItemById = async (id) => {
   const response = await axios.get(`http://localhost:9000/api/groceries/${id}`);
   return response;

@@ -1,37 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchItems } from '../../../server/api'; // Ensure this is a function that fetches data from the backend
+import { fetchItemById } from '../../../server/api';
 import './ItemPage.css';
 
 const ItemPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [items, setGroceries] = useState([]); // State to store the items
+  const [item, setItem] = useState(null); // State for a single item
   const [loading, setLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1); // State to track quantity
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    const loadItems = async () => {
+    const loadItem = async () => {
       try {
-        const response = await fetchItems();
-        setGroceries(response.data);
+        const response = await fetchItemById(id);
+        setItem(response.data);
       } catch (error) {
-        console.error("Failed to fetch items:", error);
+        console.error("Failed to fetch item:", error);
       } finally {
         setLoading(false);
       }
     };
-    loadItems();
-  }, []);
+    loadItem();
+  }, [id]);
 
   if (loading) return <p>Loading...</p>;
-
-  const item = items.find(item => item.id === parseInt(id));
   if (!item) return <p>Item not found</p>;
 
   const handleQuantityChange = (e) => {
-    setQuantity(e.target.value);
-    if(e.target.value < 0 ) setQuantity('')
+    const value = Math.max(1, parseInt(e.target.value) || 1);
+    setQuantity(value);
   };
   const totalPrice = (item.price * quantity).toFixed(2);
 

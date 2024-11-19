@@ -30,7 +30,7 @@ const Catalog = () => {
         console.error("Error fetching items:", error);
       }
       setLoading(false);
-    }, 500); 
+    }, 5900); 
 
     setFetchTimeout(timeoutId);
   };
