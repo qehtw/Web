@@ -30,7 +30,7 @@ const Catalog = () => {
         console.error("Error fetching items:", error);
       }
       setLoading(false);
-    }, 5900); 
+    }, 500); 
 
     setFetchTimeout(timeoutId);
   };
@@ -45,7 +45,6 @@ const Catalog = () => {
   }, [searchTerm, sortOrder, selectedCategory]); 
 
   const filteredItems = items.filter(item => {
-    // Перевіряємо, чи існує поле name і виконуємо пошук
     const matchesSearch = item.name && item.name.toLowerCase().includes(searchTerm.toLowerCase().trim());
     const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
     return matchesSearch && matchesCategory;
