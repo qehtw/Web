@@ -51,8 +51,8 @@ const cartReducer = (state = initialState, action) => {
                 const isMatchingItem =
                     String(item.id).trim() === String(action.payload.id).trim() &&
                     String(item.category).trim().toLowerCase() === String(action.payload.category).trim().toLowerCase() &&
-                    String(item.selectedSize).trim().toLowerCase() === String(action.payload.selectedType).trim().toLowerCase() &&
-                    String(item.selectedType).trim().toLowerCase() === String(action.payload.selectedSize).trim().toLowerCase();
+                    String(item.selectedSize).trim().toLowerCase() === String(action.payload.selectedSize).trim().toLowerCase() &&
+                    String(item.selectedType).trim().toLowerCase() === String(action.payload.selectedType).trim().toLowerCase();
         
                 console.log('Detailed check:', {
                     itemSelectedSize: item.selectedSize,

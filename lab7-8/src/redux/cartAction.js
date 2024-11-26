@@ -33,9 +33,9 @@ export const clearCart = () => {
     };
 };
 
-export const updateCartItemCount = (id ,category,selectedType,selectedSize ,newCount) => {
+export const updateCartItemCount = (id ,category,selectedSize ,selectedType ,newCount) => {
     return (dispatch, getState) => {
-        dispatch({ type: 'UPDATE_CART_ITEM_COUNT', payload: { id ,category ,selectedType ,selectedSize, newCount } });
+        dispatch({ type: 'UPDATE_CART_ITEM_COUNT', payload: { id ,category ,selectedSize,selectedType ,newCount } });
         localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
     };
 };
