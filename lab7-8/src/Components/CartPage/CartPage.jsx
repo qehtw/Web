@@ -37,6 +37,10 @@ const CartPage = () => {
         dispatch(clearCart());
     };
 
+    const order = () =>{
+        navigate("/OrderPage")
+    }
+
     const getTotalPrice = () => {
         return cartItems.reduce((total, item) => {
             return total + item.price * item.count;
@@ -99,6 +103,9 @@ const CartPage = () => {
                         <p>Total Price: ${getTotalPrice()}</p>
                         <Button className="clear-cart-button" onClick={handleClearCart}>
                             Clear Cart
+                        </Button>
+                        <Button className='order-button' onClick={order}>
+                        Order
                         </Button>
                     </div>
                 </>
